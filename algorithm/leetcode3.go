@@ -1,5 +1,7 @@
 package algorithm
 
+import "algorithm-with-go/common"
+
 // 3. 无重复字符的最长子串
 // 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
 
@@ -34,15 +36,8 @@ func lengthOfLongestSubstring(s string) int {
 		}
 		que = append(que, tmp)
 		set[tmp] = true
-		res = max(res, i - left + 1)
+		res = common.Max(res, i - left + 1)
 	}
 	return res
 }
 
-func max(a, b int) int {
-	if a > b {
-		return a
-	} else {
-		return b
-	}
-}
