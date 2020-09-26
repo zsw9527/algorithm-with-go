@@ -14,3 +14,9 @@ func Max(a, b int) int {
 	}
 	return b
 }
+
+func Swap(nums []int, a, b int) {
+	tmp := nums[a]
+	nums[a] = nums[b]
+	nums[b] = tmp
+}

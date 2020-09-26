@@ -1,5 +1,7 @@
 package algorithm
 
+import "algorithm-with-go/common"
+
 // 46. 全排列
 // 给定一个 没有重复 数字的序列，返回其所有可能的全排列。
 
@@ -18,11 +20,11 @@ package algorithm
 
 func Permute(nums []int) [][]int {
 	var res [][]int
-	dfs(nums, 0, &res)
+	permuteDFS(nums, 0, &res)
 	return res
 }
 
-func dfs(nums []int, start int, res *[][]int) {
+func permuteDFS(nums []int, start int, res *[][]int) {
 	if start == len(nums) {
 		//这个地方为什么要将nums数组copy一份呢？
 		//如果不copy，每一次递归都会修改nums数组，造成之前已经append到res里的nums数据发生变化
@@ -34,14 +36,9 @@ func dfs(nums []int, start int, res *[][]int) {
 		return 
 	}
 	for i := start; i < len(nums); i++ {
-		swap(nums, start, i)
-		dfs(nums, start+1, res)
-		swap(nums, start, i)
+		common.Swap(nums, start, i)
+		permuteDFS(nums, start+1, res)
+		common.Swap(nums, start, i)
 	}
 }
 
-func swap(nums []int, a, b int) {
-	tmp := nums[a]
-	nums[a] = nums[b]
-	nums[b] = tmp
-}
